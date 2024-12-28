@@ -1,0 +1,296 @@
+{% extends 'header.html' %}
+{% block body %}
+<div class="container">
+    <h1 class="pb-2 m-5 border-bottom border-top text-center" style="font-weight: 700;">WINDOWS DISCOUNTS</h1>
+    {% if Status %}
+        {% if TheMessage %}
+            <span class="badge text-bg-success">{{TheMessage}}</span>
+        {% endif %}
+    {% else %}
+        <span class="badge text-bg-danger">{{TheMessage}}</span>
+    {% endif %}
+    <form action="{{url_for('WindowsDiscounts')}}" method="post" class="MyForm" style="padding: 20px;">
+        <div class="mb-3">
+          <label for="exampleInputTitle" class="form-label">Title</label>
+          <input type="text" class="form-control" name="Title" id="exampleInputTitle" aria-describedby="TitleHelp">
+        </div>
+
+        <div class="Sector text-center">
+            <input type="text" style="display: none;" name="Sectors" id="Sectors">
+            <h3 class="pb-2 m-5 border-bottom border-top text-center" style="font-weight: 500;"> The Sector </h3>
+            <div class="accordion SectorContentr" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Alumnium Sectors
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table class="table Sectors text-center">
+                                <thead>
+                                  <tr>
+                                    <th scope="col" class="SectorNumber">#</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Height Amount</th>
+                                    <th scope="col">Height Addition</th>
+                                    <th scope="col">Width Amount</th>
+                                    <th scope="col">Width Addition</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="SectorsData">
+
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="SectorSource" style="margin: 30px;">
+                <div>
+                    <label for="exampleInputSector" class="form-label">Sector</label>
+                    <select class="form-select" id="exampleInputSector" aria-label="Default select example">
+                        {% for index, item in data %}
+                            {% if item[1][1] == "Aluminum" %}
+                                <option value={{item[0][1]}}> {{ item[0][1] }} </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="HeightAmount" class="form-label">Height Amount</label>
+                    <input type="text" class="form-control" name="HeightAmount" id="HeightAmount" aria-describedby="HeightAmount">
+                </div>
+                <div>
+                    <label for="HeightAddition" class="form-label">Height Addition</label>
+                    <input type="text" class="form-control" name="HeightAddition" id="HeightAddition" aria-describedby="HeightAddition">
+                </div>
+                <div>
+                    <label for="WidthAmount" class="form-label">Width Amount</label>
+                    <input type="text" class="form-control" name="WidthAmount" id="WidthAmount" aria-describedby="WidthAmount">
+                </div>
+                <div>
+                    <label for="WidthAddition" class="form-label">Width Addition</label>
+                    <input type="text" class="form-control" name="WidthAddition" id="WidthAddition" aria-describedby="WidthAddition">
+                </div>
+            </div>
+            <span class="btn btn-primary SectorAdding">Add</span>
+        </div>
+
+        <div class="Glass text-center">
+            <input type="text" style="display: none;" name="Glasses" id="Glasses">
+            <h3 class="pb-2 m-5 border-bottom border-top text-center" style="font-weight: 500;"> The Glass </h3>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Glass Dimensions
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table class="table Glasses text-center">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Thickness</th>
+                                    <th scope="col">Leafs Amount</th>
+                                    <th scope="col">Height Addition</th>
+                                    <th scope="col">Width Addition</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="GlassesData">
+
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="GlassSource" style="margin: 30px;">
+                <div>
+                    <label for="exampleInputGlass" class="form-label">Thickness</label>
+                    <select class="form-select" id="exampleInputGlass" aria-label="Default select example">
+                        <option value="Single">Single</option>
+                        <option value="Double">Double</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="LeafsAmount" class="form-label">Leafs Amount</label>
+                    <input type="number" class="form-control" name="LeafsAmount" id="LeafsAmount" aria-describedby="LeafsAmount">
+                </div>
+                <div>
+                    <label for="HeightAddition" class="form-label">Height Addition</label>
+                    <input type="text" class="form-control" name="HeightAddition" id="HeightAddition" aria-describedby="HeightAddition">
+                </div>
+                <div>
+                    <label for="WidthAddition" class="form-label">Width Addition</label>
+                    <input type="text" class="form-control" name="WidthAddition" id="WidthAddition" aria-describedby="WidthAddition">
+                </div>
+            </div>
+            <span class="btn btn-primary GlassAdding">Add</span>
+        </div>
+
+        <div class="Accessories text-center">
+            <input type="text" style="display: none;" name="Accessories" id="Accessories">
+            <h3 class="pb-2 m-5 border-bottom border-top text-center" style="font-weight: 500;"> The Accessories </h3>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Accessories Amount
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table class="table Accessories text-center">
+                                <thead>
+                                  <tr>
+                                    <th scope="col" class="AccessoriesNumber">#</th>
+                                    <th scope="col">Accessories Title</th>
+                                    <th scope="col">Accessories Amount</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="AccessoriesData">
+
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="AccessoriesSource" style="margin: 30px;">
+                <div>
+                    <label for="exampleInputAccessories" class="form-label">Thickness</label>
+                    <select class="form-select" id="exampleInputAccessories" aria-label="Default select example">
+                        {% for index, item in data %}
+                            {% if item[1][1] == "Accessories" %}
+                                <option value={{item[0][1]}}> {{ item[0][1] }} </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="AccessoriesAmount" class="form-label">Accessories Amount</label>
+                    <input type="text" class="form-control" name="AccessoriesAmount" id="AccessoriesAmount" aria-describedby="AccessoriesAmount">
+                </div>
+            </div>
+            <span class="btn btn-primary AccessoriesAdding">Add</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script>
+    // Add Sector to Container
+    AddBtn = document.getElementsByClassName("SectorAdding")[0]
+    SectorSource = document.getElementsByClassName("SectorSource")[0]
+    SectorsFull = true
+    function CreateRow(Number, args, Type){
+        TR = document.createElement("tr")
+        TH = document.createElement("th")
+        TH.classList.add(Type)
+        TH.innerHTML = Number
+        TR.appendChild(TH)
+        for( const index in args){
+            TD = document.createElement("td")
+            TD.innerHTML = args[index]
+            TR.appendChild(TD)
+        }
+        return TR
+    }
+    AddBtn.onclick = () =>{
+        Containers = SectorSource.children
+        theValues = []
+        for (const item of Containers) {
+            if (item.children[1].value){
+                theValues.push(item.children[1].value)
+            }else{
+                SectorsFull = false
+                break
+            }
+        }
+        if (SectorsFull){
+            SectorNumber = Array.from(document.getElementsByClassName("SectorNumber")).length
+            Row = CreateRow(SectorNumber,theValues, "SectorNumber")
+            document.getElementsByClassName("SectorsData")[0].appendChild(Row)
+        }
+    }
+
+    // Add Glass to Container
+    AddBtn = document.getElementsByClassName("GlassAdding")[0]
+    GlassSource = document.getElementsByClassName("GlassSource")[0]
+    GlassFull = true
+    AddBtn.onclick = () => {
+        Containers = GlassSource.children
+        theValues = []
+        for (const item of Containers) {
+            if (item.children[1].value){
+                theValues.push(item.children[1].value)
+            }else{
+                GlassFull = false
+                break
+            }
+        }
+        if (GlassFull){
+            GlassNumber = Array.from(document.getElementsByClassName("GlassNumber")).length
+            Row = CreateRow(GlassNumber+1,theValues, "GlassNumber")
+            document.getElementsByClassName("GlassesData")[0].appendChild(Row)
+        }
+    }
+
+     // Add Accessories to Container
+     AddBtn = document.getElementsByClassName("AccessoriesAdding")[0]
+     AccessoriesSource = document.getElementsByClassName("AccessoriesSource")[0]
+     AccessoriesFull = true
+     AddBtn.onclick = () => {
+         Containers = AccessoriesSource.children
+         theValues = []
+         for (const item of Containers) {
+             if (item.children[1].value){
+                 theValues.push(item.children[1].value)
+             }else{
+                AccessoriesFull = false
+                 break
+             }
+         }
+         if (AccessoriesFull){
+            AccessoriesNumber = Array.from(document.getElementsByClassName("AccessoriesNumber")).length
+            Row = CreateRow(AccessoriesNumber, theValues, "AccessoriesNumber")
+            document.getElementsByClassName("AccessoriesData")[0].appendChild(Row)
+         }
+     }
+    
+    
+     function RetriveData(ClassName){
+        Parent = document.getElementsByClassName(ClassName)[0]
+        TableRows = Array.from(Parent.children)
+        for (const Item in TableRows){
+            console.log(`Is ${Item}`)
+        }
+     }
+    // Send Data to Backend
+    document.getElementsByClassName("MyForm")[0].onsubmit = (e) =>{
+        e.preventDefault();
+        RetriveData("SectorsData")
+
+        /*data = []
+        fetch('/WindowsDiscounts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log('Response from Flask:', result);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });*/
+    }
+
+</script>
+{% endblock %}
