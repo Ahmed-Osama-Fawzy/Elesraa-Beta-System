@@ -1,0 +1,19 @@
+h1 {
+    color: green;
+}
+
+.Hidden{
+    display: none !important;
+}
+
+.Clickable{
+    cursor: pointer !important;
+    font-size: 20px !important;
+    margin-right: 4px;
+}
+
+hr{
+    height: 5px;
+    border: 2px solid black !important;
+    opacity: 1 !important; 
+}

@@ -1,0 +1,21 @@
+{% extends 'header.html' %}
+{% block body %}
+<div class="container">
+    <div class="Materials">
+        <h1 class="HighDarkColor pb-2 m-5 border-bottom border-top" style="font-weight: 700;">MAERTIALS </h1>
+        <a href="{{url_for('MaterialControling')}}">
+            <button type="button" class="btn btn-primary">Materials Controling</button>
+        </a>
+        <a href="{{url_for('MaterialsExplore')}}">
+            <button type="button" class="btn btn-primary">Explore Materials</button>
+        </a>
+    </div>
+    <div class="WindodowsDiscotns">
+        <h1 class="HighDarkColor pb-2 m-5 border-bottom border-top" style="font-weight: 700;">WINDOWS DISCOUNTS </h1>
+        <a href="{{url_for('AddingWindowsDiscounts')}}">
+            <button type="button" class="btn btn-primary">Windows Disounts</button>
+        </a>
+    </div>
+
+</div>
+{% endblock %}
